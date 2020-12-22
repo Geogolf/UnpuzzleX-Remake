@@ -95,7 +95,7 @@ function createCell(data) {
   cell.setAttribute("id", data.id);
   return cell;
 }
-function moveCell(cell, direction) {
+function moveCell(cell, direction, real) {
   let r = getCellIdInfo(cell, "r"),
       c = getCellIdInfo(cell, "c"),
       l = getCellIdInfo(cell, "l"),
@@ -106,10 +106,11 @@ function moveCell(cell, direction) {
       x2 = (direction == "t") ? x1 : (direction == "r") ? window.innerWidth+5000 : (direction == "b") ? x1 : (direction == "l") ? -5000 : null,
       y2 = (direction == "t") ? -5000 : (direction == "r") ? y1 : (direction == "b") ? window.innerHeight+5000 : (direction == "l") ? y1 : null;
   
-  if (canMoveCell(cell, direction)) {
+  if (canMoveCell(cell, direction) || real) {
     //Move Animation
-    let topOrLeft = (direction == "l" || direction == "r") ? "left" : "top",
-        frameDistance = (direction == "t" || direction == "l") ? -1*24 : 1*24,
+    let speed = (real) ? 1e6 : 1,
+        topOrLeft = (direction == "l" || direction == "r") ? "left" : "top",
+        frameDistance = (direction == "t" || direction == "l") ? -1*24*speed : 1*24*speed,
         distance = (direction == "t" || direction == "l") ? -1*Math.abs((x2-x1)+(y2-y1)) : 1*Math.abs((x2-x1)+(y2-y1)),
         elStyle = window.getComputedStyle(el),
         value = elStyle.getPropertyValue(topOrLeft).replace("px", ""),
@@ -223,12 +224,7 @@ function canMoveCell(cell, direction) {
   return canMove;
 }
 function popCell(cell) {
-  if (di(cell).style.opacity == "") {
-    di(cell).style.opacity = 0;
-    user.levelState.cellCount--;
-    user.levelState.cells[getCellIdInfo(cell, "r")][getCellIdInfo(cell, "c")][getCellIdInfo(cell, "l")].shown = false;
-    updateLevel();
-  }
+  moveCell(cell, "t", true);
 }
 function rotateCell(cell) {
   let r = getCellIdInfo(cell, "r"),
@@ -245,10 +241,7 @@ function rotateCell(cell) {
         dr = getCellIdInfo(cellAtdd, "r"),
         dc = getCellIdInfo(cellAtdd, "c"),
         dl = getCellIdInfo(cellAtdd, "l")+1,
-        cellAtvalue/* = getIdFromDirection(cell, value)*/,
-        cellData/* = user.levelState.cells[getCellIdInfo(cellAtvalue, "r")][getCellIdInfo(cellAtvalue, "c")][getCellIdInfo(cellAtvalue, "l")]*/;
-    
-    let cellDatasAtvalue = user.levelState.cells[getCellIdInfo(getIdFromDirection(cell, value), "r")][getCellIdInfo(getIdFromDirection(cell, value), "c")];
+        cellAtvalue, cellData, cellDatasAtvalue = user.levelState.cells[getCellIdInfo(getIdFromDirection(cell, value), "r")][getCellIdInfo(getIdFromDirection(cell, value), "c")];
     cellDatasAtvalue.forEach((value2, index2) => {
       if (typeof value2.connected != "undefined") {
         //This is assuming there are no cells on top of the core cell, I don't think that will ever happen, but is there a way to check?
@@ -264,80 +257,41 @@ function rotateCell(cell) {
     user.levelState.cells[getCellIdInfo(cellAtvalue, "r")][getCellIdInfo(cellAtvalue, "c")][getCellIdInfo(cellAtvalue, "l")].connected = getOppositeDirection(dd);
     di(getCellIdInfo(cellAtdd, "r")+""+getCellIdInfo(cellAtdd, "c")+"t").appendChild(di(cellAtvalue));
     di(cellAtvalue).setAttribute("id", dr+""+dc+""+dl);
-    
     user.levelState.cells[dr][dc].push(cellData);
     user.levelState.cells[dr][dc][user.levelState.cells[dr][dc].indexOf(cellData)].id = dr+""+dc+""+dl;
     user.levelState.cells[getCellIdInfo(cellAtvalue, "r")][getCellIdInfo(cellAtvalue, "c")].splice(user.levelState.cells[getCellIdInfo(cellAtvalue, "r")][getCellIdInfo(cellAtvalue, "c")].indexOf(cellData), 1);
+    
     
     moved.push(dr+""+dc+""+dl);
   });
   moved.forEach((value) => {
     let wr = getCellIdInfo(value, "r"),
         wc = getCellIdInfo(value, "c");
-    user.levelState.cells[wr][wc].forEach((value2, index) => {
-      di(value2.id).setAttribute("id", wr+""+wc+""+index);
-      user.levelState.cells[wr][wc][index].id = wr+""+wc+""+index;
+    user.levelState.cells[wr][wc].forEach((value2, wl) => {
+      let id = wr+""+wc+""+wl;
+      
+      //Bombs' effect applies to all cells in the layer
+      if (user.levelState.cells[wr][wc][wl].type.includes(3)) {
+        user.levelState.cells[wr][wc].forEach((value3, index) => {
+          if (!value3.type.includes(3) && !value3.type.includes(0)) {
+            popCell(value3.id);
+          }
+        });
+      }
     });
   });
-  
-  /*let r = getCellIdInfo(cell, "r"),
-      c = getCellIdInfo(cell, "c"),
-      l = getCellIdInfo(cell, "l"),
-      loops = {
-        1: ["t", "r", "b", "l"],
-        2: ["tt", "rr", "bb", "ll"]
-      };
-  user.levelState.cells[r][c][l].connectors.forEach((value, index) => {
-    let dd = loops[value.length][(typeof loops[value.length][loops[value.length].indexOf(value)+1] != "undefined") ? loops[value.length].indexOf(value)+1 : 0],
-        id = getIdFromDirection(cell, dd),
-        dr = getCellIdInfo(id, "r"),
-        dc = getCellIdInfo(id, "c"),
-        dl = getCellIdInfo(id, "l")+1,
-        cellData = user.levelState.cells[getCellIdInfo(getIdFromDirection(cell, value), "r")][getCellIdInfo(getIdFromDirection(cell, value), "c")][getCellIdInfo(getIdFromDirection(cell, value), "l")];
-    
-    user.levelState.cells[r][c][l].connectors[index] = dd;
-    di(id).appendChild(di(getIdFromDirection(cell, value)));
-    di(getIdFromDirection(cell, value)).setAttribute("id", dr+""+dc+""+dl);
-    
-    user.levelState.cells[dr][dc].push(cellData);
-    user.levelState.cells[dr][dc][user.levelState.cells[dr][dc].indexOf(cellData)].id = dr+""+dc+""+dl;
-    user.levelState.cells[getCellIdInfo(cellData.id, "r")][getCellIdInfo(cellData.id, "c")].splice(user.levelState.cells[getCellIdInfo(cellData.id, "r")][getCellIdInfo(cellData.id, "c")].indexOf(cellData), 1);
-  });*/
-  /*
-  let r = getCellIdInfo(cell, "r"),
-      c = getCellIdInfo(cell, "c"),
-      l = getCellIdInfo(cell, "l"),
-      ids = {
-        t: (r-1)+""+c+""+(user.levelState.cells[r-1][c].length-1),
-        r: r+""+(c+1)+""+(user.levelState.cells[r][c+1].length-1),
-        b: (r+1)+""+c+""+(user.levelState.cells[r+1][c].length-1),
-        l: r+""+(c-1)+""+(user.levelState.cells[r][c-1].length-1),
-        tt: (r-2)+""+c+""+(typeof user.levelState.cells[r+2] != "undefined") ? user.levelState.cells[r-2][c].length-1 : "0",
-        rr: r+""+(c+2)+""+(typeof user.levelState.cells[r+2] != "undefined") ? user.levelState.cells[r][c+2].length-1 : "0",
-        bb: (r+2)+""+c+""+(typeof user.levelState.cells[r+2] != "undefined") ? user.levelState.cells[r+2][c].length-1 : "0",
-        ll: r+""+(c-2)+""+(typeof user.levelState.cells[r+2] != "undefined") ? user.levelState.cells[r][c-2].length-1 : "0"
-      },
-      loops = {
-        1: ["t", "r", "b", "l"],
-        2: ["tt", "rr", "bb", "ll"]
-      };
+  moved.forEach((value) => {
+    let wr = getCellIdInfo(value, "r"),
+        wc = getCellIdInfo(value, "c");
+    user.levelState.cells[wr][wc].forEach((value2, wl) => {
+      let id = wr+""+wc+""+wl;
       
-  user.levelState.cells[r][c][0].connectors.forEach((value, index) => {
-    let nextInLoop = loops[value.length][(typeof loops[value.length][loops[value.length].indexOf(value)+1] != "undefined") ? loops[value.length].indexOf(value)+1 : 0],
-        dr = getCellIdInfo(ids[nextInLoop], "r"),
-        dc = getCellIdInfo(ids[nextInLoop], "c"),
-        cellData = user.levelState.cells[getCellIdInfo(ids[value], "r")][getCellIdInfo(ids[value], "c")][1];
-    
-    user.levelState.cells[r][c][0].connectors[index] = nextInLoop;
-    di(dr+""+dc+"0").appendChild(di(ids[value]));
-    di(ids[value]).setAttribute("id", ids[nextInLoop]);
-    
-    user.levelState.cells[dr][dc].push(cellData);
-    user.levelState.cells[dr][dc][user.levelState.cells[dr][dc].indexOf(cellData)].id = ids[nextInLoop];
-    user.levelState.cells[getCellIdInfo(ids[value], "r")][getCellIdInfo(ids[value], "c")].splice(user.levelState.cells[getCellIdInfo(ids[value], "r")][getCellIdInfo(ids[value], "c")].indexOf(cellData), 1);
+      //Moves the cells to the proper layers
+      di(value2.id).setAttribute("id", id);
+      user.levelState.cells[wr][wc][wl].id = id;
+    });
   });
-  if (user.levelState.cells[r][c][0].connectors[user.levelState.cells[r][c][0].connectors.length-1] == "r") {user.levelState.cells[r][c][0].connectors = getDirectionOrder(user.levelState.cells[r][c][0].connectors)}
-  */
+  updateLevel();
 }
 
 
@@ -355,23 +309,9 @@ function removePip(cell, side) {
   let pipAt = getPipAt(cell, side);
   if (pipAt >= 0) {di(cell).removeChild(di(cell).childNodes[pipAt])}
 }
-/*function addArrow(cell, direction, real) {
-  let arrowAt = (!real) ? getArrowAt(cell, direction) : -1;
-  if (arrowAt < 0) {
-    let arrow = document.createElement("div");
-    let layered = (getCellIdInfo(cell, "l") != 0) ? "Layered" : "";
-    arrow.setAttribute("class", direction+layered+"Arrow");
-    arrow.setAttribute("id", cell+direction+layered+"Arrow");
-    di(cell).appendChild(arrow);
-  }
-}
-function removeArrow(cell, direction) {
-  let arrowAt = getArrowAt(cell, direction);
-  if (arrowAt >= 0) {di(cell).removeChild(di(cell).childNodes[arrowAt])}
-}*/
 function addWheelX(cell, real) {
   let wheelXAt = (!real) ? getWheelXAt(cell) : -1;
-  if (wheelXAt < 0) {
+  if (wheelXAt < 0 && di(cell) != null) {
     let wheelX = document.createElement("span");
     wheelX.setAttribute("class", "wheelX");
     wheelX.setAttribute("id", cell+"WheelX");
@@ -512,7 +452,6 @@ function loadLevel(level) {
       let cellContainer = document.createElement("div");
       cellContainer.setAttribute("class", "tile");
       cellContainer.setAttribute("id", r+""+c+"t");
-      /*let cell = createCell(levels[level].cells[r][c][0]);*/
       for (let l=0; l<levels[level].cells[r][c].length; l++) {
         cellContainer.appendChild(createCell(levels[level].cells[r][c][l]));
       }
@@ -520,6 +459,7 @@ function loadLevel(level) {
     }
     di("tableContainer").appendChild(row);
   }
+  di("onLevel").textContent = "Level "+level;
   updateLevel();
 }
 function updateLevel() {
@@ -553,12 +493,7 @@ function updateLevel() {
                 conC = getCellIdInfo(id, "c"),
                 conL = getCellIdInfo(id, "l");
             if (cells[conR][conC][conL].shown) {addWheelX(id)} else {removeWheelX(id)}
-            if (value.length == 1) {
-              if (cells[conR][conC][conL].shown && cells[r][c][l].shown) {addWheelLine(r+""+c+""+l, value)} else {removeWheelLine(r+""+c+""+l, value)}
-            }
-            if (value.length == 2) {
-              
-            }
+            if (cells[conR][conC][conL].shown && cells[r][c][l].shown) {addWheelLine(r+""+c+""+l, value)} else {removeWheelLine(r+""+c+""+l, value)}
           });
         }
       }

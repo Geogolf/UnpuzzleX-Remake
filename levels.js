@@ -570,6 +570,138 @@ const levels = [
     ],
     cellCount: 26,
     popAt: 1
+  },
+  {
+    cells: [
+      [
+        [{id: "000", type: [0]}],
+        [{id: "010", type: [0]}],
+        [{id: "020", type: [1], pips: ["r"]}],
+        [{id: "030", type: [1], pips: ["b"]}],
+        [{id: "040", type: [1], pips: ["b", "l"]}],
+        [{id: "050", type: [1], pips: ["l"]}],
+        [{id: "060", type: [2], direction: "r", pips: ["l"]}],
+        [{id: "070", type: [0]}],
+        [{id: "080", type: [0]}]
+      ],
+      [
+        [{id: "100", type: [0]}],
+        [{id: "110", type: [1], pips: ["r"]}],
+        [{id: "120", type: [1], pips: ["t"]}],
+        [{id: "130", type: [1], pips: ["l"]}],
+        [{id: "140", type: [1], pips: ["b"]}],
+        [{id: "150", type: [1], pips: ["r"]}],
+        [{id: "160", type: [1], pips: ["t"]}],
+        [{id: "170", type: [1], pips: ["l"]}],
+        [{id: "180", type: [0], pips: []}]
+      ],
+      [
+        [{id: "200", type: [2], direction: "t", pips: ["r"]}],
+        [{id: "210", type: [1]}],
+        [{id: "220", type: [0]}, {id: "221", type: [3], connected: "r"}],
+        [{id: "230", type: [4], connectors: ["l"]}],
+        [{id: "240", type: [1]}],
+        [{id: "250", type: [4], connectors: ["r", "b"]}],
+        [{id: "260", type: [0]}, {id: "261", type: [2], connected: "l", direction: "l"}],
+        [{id: "270", type: [1], pips: ["t", "r", "b"]}],
+        [{id: "280", type: [1]}]
+      ],
+      [
+        [{id: "300", type: [0]}],
+        [{id: "310", type: [1], pips: ["t"]}],
+        [{id: "320", type: [1], pips: ["r", "l"]}],
+        [{id: "330", type: [1], pips: ["b"]}],
+        [{id: "340", type: [2], direction: "l"}],
+        [{id: "350", type: [0]}, {id: "351", type: [2], connected: "t", direction: "t"}],
+        [{id: "360", type: [1], pips: ["r", "b"]}],
+        [{id: "370", type: [1]}],
+        [{id: "380", type: [0]}]
+      ],
+      [
+        [{id: "400", type: [0]}],
+        [{id: "410", type: [0]}],
+        [{id: "420", type: [1], pips: ["r"]}],
+        [{id: "430", type: [2], direction: "t"}],
+        [{id: "440", type: [1]}],
+        [{id: "450", type: [1], pips: ["l"]}],
+        [{id: "460", type: [1], pips: ["l"]}],
+        [{id: "470", type: [0]}],
+        [{id: "480", type: [0]}]
+      ]
+    ],
+    cellCount: 33,
+    popAt: 3
+  },
+  {
+    cells: [
+      [
+        [{id: "000", type: [0]}],
+        [{id: "010", type: [0]}],
+        [{id: "020", type: [1]}],
+        [{id: "030", type: [1]}],
+        [{id: "040", type: [1], pips: ["b", "l"]}],
+        [{id: "050", type: [0]}, {id: "051", type: [2], connected: "bb", direction: "b"}],
+        [{id: "060", type: [1], pips: ["r"]}],
+        [{id: "070", type: [1]}],
+        [{id: "080", type: [1], pips: ["l"]}],
+        [{id: "090", type: [0]}],
+        [{id: "0100", type: [0]}]
+      ],
+      [
+        [{id: "100", type: [0]}],
+        [{id: "110", type: [0]}, {id: "111", type: [2], connected: "b", direction: "r"}],
+        [{id: "120", type: [1], pips: ["t"]}],
+        [{id: "130", type: [1], pips: ["l"]}],
+        [{id: "140", type: [1], pips: ["l"]}],
+        [{id: "150", type: [0]}, {id: "151", type: [2], connected: "b", direction: "t"}],
+        [{id: "160", type: [1], pips: ["t", "r"]}],
+        [{id: "170", type: [1]}],
+        [{id: "180", type: [1], pips: ["t"]}],
+        [{id: "190", type: [0]}, {id: "191", type: [3], connected: "b"}],
+        [{id: "1100", type: [0]}]
+      ],
+      [
+        [{id: "200", type: [0]}, {id: "201", type: [3], connected: "r"}],
+        [{id: "210", type: [4], connectors: ["t", "r", "b", "l"]}],
+        [{id: "220", type: [0]}, {id: "221", type: [1], connected: "l"}],
+        [{id: "230", type: [0]}, {id: "231", type: [2], connected: "rr", direction: "l"}],
+        [{id: "240", type: [0]}, {id: "241", type: [2], connected: "r", direction: "r"}],
+        [{id: "250", type: [4], connectors: ["t", "r", "l", "tt", "rr", "ll"]}],
+        [{id: "260", type: [0]}, {id: "261", type: [2], connected: "l", direction: "r"}],
+        [{id: "270", type: [0]}, {id: "271", type: [2], connected: "ll", direction: "l"}],
+        [{id: "280", type: [0]}, {id: "281", type: [2], connected: "r", direction: "b"}],
+        [{id: "290", type: [4], connectors: ["t", "r", "b", "l"]}],
+        [{id: "2100", type: [0]}, {id: "2101", type: [2], connected: "l", direction: "l"}]
+      ],
+      [
+        [{id: "300", type: [0]}],
+        [{id: "310", type: [0]}, {id: "311", type: [2], connected: "t", direction: "t"}],
+        [{id: "320", type: [1], pips: ["b"]}],
+        [{id: "330", type: [1]}],
+        [{id: "340", type: [1], pips: ["r", "l"]}],
+        [{id: "350", type: [1], pips: ["r"]}],
+        [{id: "360", type: [1]}],
+        [{id: "370", type: [1]}],
+        [{id: "380", type: [1], pips: ["l"]}],
+        [{id: "390", type: [0]}, {id: "391", type: [2], connected: "t", direction: "t"}],
+        [{id: "3100", type: [0]}]
+      ],
+      [
+        [{id: "400", type: [0]}],
+        [{id: "410", type: [0]}],
+        [{id: "420", type: [1], pips: ["r"]}],
+        [{id: "430", type: [1], pips: ["t"]}],
+        [{id: "440", type: [1], pips: ["l"]}],
+        [{id: "450", type: [1], pips: ["t"]}],
+        [{id: "460", type: [1], pips: ["r"]}],
+        [{id: "470", type: [1], pips: ["t"]}],
+        [{id: "480", type: [2], direction: "t"}],
+        [{id: "490", type: [0]}],
+        [{id: "4100", type: [0]}]
+      ]
+    ],
+    cellCount: 43,
+    popAt: 5
   }
 ];
-levels.forEach((v1) => {v1.cells.forEach((v2) => {v2.forEach((v3) => {v3.forEach((v4) => {v4.shown = v4.type != 0})})})});
+levels.forEach((v1) => {v1.cells.forEach((v2) => {v2.forEach((v3) => {v3.forEach((v4) => {v4.shown = !v4.type.includes(0)})})})});
