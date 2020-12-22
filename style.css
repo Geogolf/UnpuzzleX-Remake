@@ -8,6 +8,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   touch-action: manipulation;
+  overflow: hidden;
 }
 body::-webkit-scrollbar {display: none}
 table {margin-left: auto; margin-right: auto}
@@ -76,6 +77,10 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
 }
 
 /* Cells */
+.tile {
+  margin: 1px;
+  position: relative;
+}
 .voidCell {
   border-radius: 10px;
   border-style: solid;
@@ -83,7 +88,6 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   border-color: rgba(0, 0, 0, 0);
   height: 100px;
   width: 100px;
-  margin: 1px;
   position: relative;
 }
 .blankCell {
@@ -96,106 +100,41 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   width: 100px;
   cursor: pointer;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
-  margin: 1px;
   position: relative;
 }
 .layeredCell {
   height: 85px;
   width: 85px;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 49%;
+  left: 49%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 10;
 }
-.tArrow {
-  width: 0;
-  height: 0;
-  border-radius: 10px;
-  border-left: 45px solid transparent;
-  border-right: 45px solid transparent;
-  border-bottom: 90px solid rgb(55, 99, 222);
-  margin: 5px;
-  z-index: 2;
-}
-.tArrow::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 35px solid transparent;
-  border-right: 35px solid transparent;
-  border-bottom: 70px solid rgb(222, 222, 222);
-  position: absolute;
-  top: 20px;
-  left: 15px;
-}
-.rArrow {
-  width: 0;
-  height: 0;
-  border-radius: 10px;
-  border-top: 45px solid transparent;
-  border-bottom: 45px solid transparent;
-  border-left: 90px solid rgb(55, 99, 222);
-  margin: 5px;
-  z-index: 2;
-}
-.rArrow::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-top: 35px solid transparent;
-  border-bottom: 35px solid transparent;
-  border-left: 70px solid rgb(222, 222, 222);
-  position: absolute;
-  top: 15px;
-  left: 12px;
-}
-.bArrow {
-  width: 0;
-  height: 0;
-  border-radius: 10px;
-  border-left: 45px solid transparent;
-  border-right: 45px solid transparent;
-  border-top: 90px solid rgb(55, 99, 222);
-  margin: 5px;
-  z-index: 2;
-}
-.bArrow::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 35px solid transparent;
-  border-right: 35px solid transparent;
-  border-top: 70px solid rgb(222, 222, 222);
-  position: absolute;
-  top: 11px;
-  left: 15px;
-}
-.lArrow {
-  width: 0;
-  height: 0;
-  border-radius: 10px;
-  border-top: 45px solid transparent;
-  border-bottom: 45px solid transparent;
-  border-right: 90px solid rgb(55, 99, 222);
-  margin: 5px;
-  z-index: 2;
-}
-.lArrow::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-top: 35px solid transparent;
-  border-bottom: 35px solid transparent;
-  border-right: 70px solid rgb(222, 222, 222);
-  position: absolute;
-  top: 15px;
-  left: 18px;
-}
+.tArrow {width: 0; height: 0; border-radius: 10px; border-left: 45px solid transparent; border-right: 45px solid transparent; border-bottom: 90px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.tArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-left: 35px solid transparent; border-right: 35px solid transparent; border-bottom: 70px solid rgb(222, 222, 222); position: absolute; top: 20px; left: 15px}
+.rArrow {width: 0; height: 0; border-radius: 10px; border-top: 45px solid transparent; border-bottom: 45px solid transparent; border-left: 90px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.rArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-top: 35px solid transparent; border-bottom: 35px solid transparent; border-left: 70px solid rgb(222, 222, 222); position: absolute; top: 15px; left: 12px}
+.bArrow {width: 0; height: 0; border-radius: 10px; border-left: 45px solid transparent; border-right: 45px solid transparent; border-top: 90px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.bArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-left: 35px solid transparent; border-right: 35px solid transparent; border-top: 70px solid rgb(222, 222, 222); position: absolute; top: 11px; left: 15px}
+.lArrow {width: 0; height: 0; border-radius: 10px; border-top: 45px solid transparent; border-bottom: 45px solid transparent; border-right: 90px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.lArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-top: 35px solid transparent; border-bottom: 35px solid transparent; border-right: 70px solid rgb(222, 222, 222); position: absolute; top: 15px; left: 18px}
+.tLayeredArrow {width: 0; height: 0; border-radius: 10px; border-left: 39px solid transparent; border-right: 39px solid transparent; border-bottom: 75px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.tLayeredArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-left: 31px solid transparent; border-right: 31px solid transparent; border-bottom: 59px solid rgb(222, 222, 222); position: absolute; top: 16px; left: 13px}
+.rLayeredArrow {width: 0; height: 0; border-radius: 10px; border-top: 39px solid transparent; border-bottom: 39px solid transparent; border-left: 75px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.rLayeredArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-top: 31px solid transparent; border-bottom: 31px solid transparent; border-left: 59px solid rgb(222, 222, 222); position: absolute; top: 13px; left: 10px}
+.bLayeredArrow {width: 0; height: 0; border-radius: 10px; border-left: 39px solid transparent; border-right: 39px solid transparent; border-top: 75px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.bLayeredArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-left: 31px solid transparent; border-right: 31px solid transparent; border-top: 59px solid rgb(222, 222, 222); position: absolute; top: 10px; left: 13px}
+.lLayeredArrow {width: 0; height: 0; border-radius: 10px; border-top: 39px solid transparent; border-bottom: 39px solid transparent; border-right: 75px solid rgb(55, 99, 222); margin: 5px; z-index: 2}
+.lLayeredArrow::after {content: ""; width: 0; height: 0; border-radius: 5px; border-top: 31px solid transparent; border-bottom: 31px solid transparent; border-right: 59px solid rgb(222, 222, 222); position: absolute; top: 13px; left: 16px}
 .bomb1 {background-color: rgb(222, 222, 0); border-radius: 100% 0 0 0; border: 0px solid rgb(175, 175, 25); width: 70px; height: 70px; position: absolute; top: 10px; left: 10px; z-index: 2}
 .bomb2 {background-color: rgb(222, 222, 0); border-radius: 0 100% 0 0; border: 0px solid rgb(175, 175, 25); width: 70px; height: 70px; position: absolute; top: 10px; left: 20px; z-index: 2}
 .bomb3 {background-color: rgb(222, 222, 0); border-radius: 0 0 100% 0; border: 0px solid rgb(175, 175, 25); width: 70px; height: 70px; position: absolute; top: 20px; left: 20px; z-index: 2}
 .bomb4 {background-color: rgb(222, 222, 0); border-radius: 0 0 0 100%; border: 0px solid rgb(175, 175, 25); width: 70px; height: 70px; position: absolute; top: 20px; left: 10px; z-index: 2}
+.bombLayered1 {background-color: rgb(222, 222, 0); border-radius: 100% 0 0 0; border: 0px solid rgb(175, 175, 25); width: 58px; height: 58px; position: absolute; top: 10px; left: 10px; z-index: 2}
+.bombLayered2 {background-color: rgb(222, 222, 0); border-radius: 0 100% 0 0; border: 0px solid rgb(175, 175, 25); width: 58px; height: 58px; position: absolute; top: 10px; left: 20px; z-index: 2}
+.bombLayered3 {background-color: rgb(222, 222, 0); border-radius: 0 0 100% 0; border: 0px solid rgb(175, 175, 25); width: 58px; height: 58px; position: absolute; top: 20px; left: 20px; z-index: 2}
+.bombLayered4 {background-color: rgb(222, 222, 0); border-radius: 0 0 0 100%; border: 0px solid rgb(175, 175, 25); width: 58px; height: 58px; position: absolute; top: 20px; left: 10px; z-index: 2}
 .wheel {
   background-color: rgb(125, 0, 200);
   border-radius: 100%;
@@ -205,7 +144,7 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 12;
 }
 .wheel::after {
   content: "";
@@ -217,7 +156,7 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 12;
 }
 
 /* Cell Data */
@@ -246,7 +185,7 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   top: 52%;
   left: 52%;
   transform: translate(-50%, -50%) rotate(45deg);
-  z-index: 4;
+  z-index: 3;
 }
 .wheelX::after {
   content: "";
@@ -269,7 +208,7 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 11;
 }
 .tWheelLine {bottom: 50%}
 .rWheelLine {left: 100%; transform: translateY(-2px) rotate(90deg)}
