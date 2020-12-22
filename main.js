@@ -573,4 +573,4 @@ function updateLevel() {
     }, 1000);
   }
 }
-loadLevel(levels.length-1);
+loadLevel(1);
