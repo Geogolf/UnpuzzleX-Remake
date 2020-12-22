@@ -9,530 +9,6 @@ function setUser() {
 const cellReference = ["void", "blank", "arrow", "bomb", "wheel"]
 var user = setUser();
 function getDefaultCell() {return {id: "", type: 0, pips: []}}
-const levels = [
-  {
-    cells: [
-      [
-        
-      ]
-    ],
-    cellCount: 0,
-    popAt: 0
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: ["r"]}],
-        [{id: "010", type: 1, pips: []}]
-      ]
-    ],
-    cellCount: 2,
-    popAt: 0
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: []}],
-        [{id: "010", type: 1, pips: ["l", "r"]}],
-        [{id: "020", type: 1, pips: []}]
-      ],
-      [
-        [{id: "100", type: 0, pips: []}],
-        [{id: "110", type: 1, pips: ["t", "b"]}],
-        [{id: "120", type: 0, pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 1, pips: []}],
-        [{id: "220", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 5,
-    popAt: 0
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: ["b"]}],
-        [{id: "010", type: 1, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 0, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 0, pips: []}],
-        [{id: "060", type: 0, pips: []}],
-        [{id: "070", type: 1, pips: []}],
-        [{id: "080", type: 1, pips: ["b"]}]
-      ],
-      [
-        [{id: "100", type: 1, pips: ["b"]}],
-        [{id: "110", type: 1, pips: ["t", "l"]}],
-        [{id: "120", type: 0, pips: []}],
-        [{id: "130", type: 1, pips: []}],
-        [{id: "140", type: 1, pips: ["r", "l"]}],
-        [{id: "150", type: 1, pips: []}],
-        [{id: "160", type: 0, pips: []}],
-        [{id: "170", type: 1, pips: ["t", "r", "b"]}],
-        [{id: "180", type: 1, pips: []}]
-      ],
-      [
-        [{id: "200", type: 1, pips: []}],
-        [{id: "210", type: 1, pips: ["t"]}],
-        [{id: "220", type: 0, pips: []}],
-        [{id: "230", type: 0, pips: []}],
-        [{id: "240", type: 0, pips: []}],
-        [{id: "250", type: 0, pips: []}],
-        [{id: "260", type: 0, pips: []}],
-        [{id: "270", type: 1, pips: []}],
-        [{id: "280", type: 1, pips: ["t"]}]
-      ]
-    ],
-    cellCount: 15,
-    popAt: 0
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: []}],
-        [{id: "010", type: 1, pips: ["b", "l"]}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 0, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 0, pips: []}],
-        [{id: "060", type: 0, pips: []}],
-        [{id: "070", type: 1, pips: []}],
-        [{id: "080", type: 1, pips: ["l"]}]
-      ],
-      [
-        [{id: "100", type: 1, pips: []}],
-        [{id: "110", type: 1, pips: ["r"]}],
-        [{id: "120", type: 1, pips: []}],
-        [{id: "130", type: 0, pips: []}],
-        [{id: "140", type: 0, pips: []}],
-        [{id: "150", type: 0, pips: []}],
-        [{id: "160", type: 1, pips: []}],
-        [{id: "170", type: 1, pips: ["l"]}],
-        [{id: "180", type: 1, pips: ["t", "b", "l"]}]
-      ],
-      [
-        [{id: "200", type: 1, pips: ["t", "r", "b"]}],
-        [{id: "210", type: 1, pips: ["t"]}],
-        [{id: "220", type: 0, pips: []}],
-        [{id: "230", type: 0, pips: []}],
-        [{id: "240", type: 1, pips: []}],
-        [{id: "250", type: 0, pips: []}],
-        [{id: "260", type: 0, pips: []}],
-        [{id: "270", type: 1, pips: ["r"]}],
-        [{id: "280", type: 1, pips: []}]
-      ],
-      [
-        [{id: "300", type: 1, pips: []}],
-        [{id: "310", type: 0, pips: []}],
-        [{id: "320", type: 0, pips: []}],
-        [{id: "330", type: 1, pips: []}],
-        [{id: "340", type: 1, pips: ["t", "l"]}],
-        [{id: "350", type: 1, pips: ["l"]}],
-        [{id: "360", type: 0, pips: []}],
-        [{id: "370", type: 0, pips: []}],
-        [{id: "380", type: 1, pips: ["t"]}]
-      ]
-    ],
-    cellCount: 20,
-    popAt: 0
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: ["r"]}],
-        [{id: "010", type: 1, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 3, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 1, pips: []}],
-        [{id: "060", type: 1, pips: ["b", "l"]}]
-      ],
-      [
-        [{id: "100", type: 1, pips: ["t", "b"]}],
-        [{id: "110", type: 2, direction: "r", pips: ["l"]}],
-        [{id: "120", type: 0, pips: []}],
-        [{id: "130", type: 3, pips: []}],
-        [{id: "140", type: 0, pips: []}],
-        [{id: "150", type: 2, direction: "l", pips: ["r"]}],
-        [{id: "160", type: 1, pips: ["b"]}]
-      ],
-      [
-        [{id: "200", type: 1, pips: ["r"]}],
-        [{id: "210", type: 1, pips: []}],
-        [{id: "220", type: 0, pips: []}],
-        [{id: "230", type: 3, pips: []}],
-        [{id: "240", type: 0, pips: []}],
-        [{id: "250", type: 1, pips: ["r"]}],
-        [{id: "260", type: 1, pips: []}]
-      ]
-    ],
-    cellCount: 15,
-    popAt: 3
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: ["b"]}],
-        [{id: "010", type: 1, pips: []}],
-        [{id: "020", type: 1, pips: ["r", "b"]}],
-        [{id: "030", type: 1, pips: []}],
-        [{id: "040", type: 1, pips: ["b", "l"]}]
-      ],
-      [
-        [{id: "100", type: 1, pips: ["r"]}],
-        [{id: "110", type: 3, pips: ["t"]}],
-        [{id: "120", type: 1, pips: []}],
-        [{id: "130", type: 1, pips: []}],
-        [{id: "140", type: 1, pips: ["b", "l"]}]
-      ],
-      [
-        [{id: "200", type: 1, pips: ["r", "b"]}],
-        [{id: "210", type: 1, pips: []}],
-        [{id: "220", type: 3, pips: ["r", "b"]}],
-        [{id: "230", type: 1, pips: []}],
-        [{id: "240", type: 1, pips: ["l"]}]
-      ],
-      [
-        [{id: "300", type: 1, pips: ["r"]}],
-        [{id: "310", type: 1, pips: []}],
-        [{id: "320", type: 1, pips: ["b", "l"]}],
-        [{id: "330", type: 3, pips: ["r"]}],
-        [{id: "340", type: 1, pips: ["t", "b"]}]
-      ],
-      [
-        [{id: "400", type: 1, pips: ["r"]}],
-        [{id: "410", type: 1, pips: ["t"]}],
-        [{id: "420", type: 1, pips: ["r"]}],
-        [{id: "430", type: 1, pips: ["t"]}],
-        [{id: "440", type: 1, pips: []}]
-      ]
-    ],
-    cellCount: 25,
-    popAt: 3
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 0, pips: []}],
-        [{id: "010", type: 0, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 2, direction: "b", pips: ["b"]}],
-        [{id: "040", type: 2, direction: "b", pips: []}],
-        [{id: "050", type: 2, direction: "b", pips: ["b"]}],
-        [{id: "060", type: 0, pips: []}],
-        [{id: "070", type: 0, pips: []}],
-        [{id: "080", type: 0, pips: []}]
-      ],
-      [
-        [{id: "100", type: 0, pips: []}],
-        [{id: "110", type: 1, pips: []}],
-        [{id: "120", type: 1, pips: ["l"]}],
-        [{id: "130", type: 1, pips: []}],
-        [{id: "140", type: 1, pips: ["l"]}],
-        [{id: "150", type: 1, pips: ["b"]}],
-        [{id: "160", type: 1, pips: ["r"]}],
-        [{id: "170", type: 1, pips: []}],
-        [{id: "180", type: 0, pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 0, pips: []}],
-        [{id: "220", type: 1, pips: ["t"]}],
-        [{id: "230", type: 1, pips: []}],
-        [{id: "240", type: 1, pips: ["t", "b", "l"]}],
-        [{id: "250", type: 1, pips: ["r"]}],
-        [{id: "260", type: 1, pips: ["t"]}],
-        [{id: "270", type: 0, pips: []}],
-        [{id: "280", type: 0, pips: []}]
-      ],
-      [
-        [{id: "300", type: 2, direction: "r", pips: []}],
-        [{id: "310", type: 0, pips: []}],
-        [{id: "320", type: 1, pips: ["t", "r"]}],
-        [{id: "330", type: 3, pips: []}],
-        [{id: "340", type: 3, pips: []}],
-        [{id: "350", type: 3, pips: ["t", "r"]}],
-        [{id: "360", type: 1, pips: ["b"]}],
-        [{id: "370", type: 0, pips: []}],
-        [{id: "380", type: 2, direction: "l", pips: []}]
-      ],
-      [
-        [{id: "400", type: 0, pips: []}],
-        [{id: "410", type: 0, pips: []}],
-        [{id: "420", type: 1, pips: []}],
-        [{id: "430", type: 2, direction: "t", pips: ["r", "l"]}],
-        [{id: "440", type: 1, pips: []}],
-        [{id: "450", type: 2, direction: "t", pips: ["t"]}],
-        [{id: "460", type: 1, pips: []}],
-        [{id: "470", type: 0, pips: []}],
-        [{id: "480", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 27,
-    popAt: 3
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 1, pips: []}],
-        [{id: "010", type: 0, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 1, pips: ["b"]}],
-        [{id: "040", type: 1, pips: ["l"]}],
-        [{id: "050", type: 1, pips: ["r"]}],
-        [{id: "060", type: 1, pips: []}],
-        [{id: "070", type: 1, pips: ["b"]}],
-        [{id: "080", type: 0, pips: []}],
-        [{id: "090", type: 0, pips: []}],
-        [{id: "0100", type: 1, pips: ["b"]}]
-      ],
-      [
-        [{id: "100", type: 2, direction: "r", pips: ["t"]}],
-        [{id: "110", type: 0, pips: []}],
-        [{id: "120", type: 1, pips: []}],
-        [{id: "130", type: 1, pips: ["r", "b"]}],
-        [{id: "140", type: 1, pips: ["r"]}],
-        [{id: "150", type: 3, pips: ["t", "r"]}],
-        [{id: "160", type: 1, pips: []}],
-        [{id: "170", type: 1, pips: ["r", "l"]}],
-        [{id: "180", type: 1, pips: []}],
-        [{id: "190", type: 0, pips: []}],
-        [{id: "1100", type: 2, direction: "l", pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 2, direction: "b", pips: ["r"]}],
-        [{id: "220", type: 1, pips: ["t"]}],
-        [{id: "230", type: 1, pips: []}],
-        [{id: "240", type: 0, pips: []}],
-        [{id: "250", type: 3, pips: []}],
-        [{id: "260", type: 0, pips: []}],
-        [{id: "270", type: 1, pips: ["r"]}],
-        [{id: "280", type: 1, pips: ["t", "r", "b"]}],
-        [{id: "290", type: 2, direction: "b", pips: []}],
-        [{id: "2100", type: 0, pips: []}]
-      ],
-      [
-        [{id: "300", type: 0, pips: []}],
-        [{id: "310", type: 0, pips: []}],
-        [{id: "320", type: 1, pips: ["r"]}],
-        [{id: "330", type: 1, pips: ["t", "r", "b"]}],
-        [{id: "340", type: 1, pips: []}],
-        [{id: "350", type: 3, pips: ["l"]}],
-        [{id: "360", type: 1, pips: []}],
-        [{id: "370", type: 1, pips: ["t"]}],
-        [{id: "380", type: 1, pips: []}],
-        [{id: "390", type: 0, pips: []}],
-        [{id: "3100", type: 0, pips: []}]
-      ],
-      [
-        [{id: "400", type: 0, pips: []}],
-        [{id: "410", type: 0, pips: []}],
-        [{id: "420", type: 0, pips: []}],
-        [{id: "430", type: 1, pips: []}],
-        [{id: "440", type: 1, pips: ["r", "l"]}],
-        [{id: "450", type: 2, direction: "t", pips: ["r"]}],
-        [{id: "460", type: 1, pips: ["t", "r"]}],
-        [{id: "470", type: 1, pips: []}],
-        [{id: "480", type: 0, pips: []}],
-        [{id: "490", type: 0, pips: []}],
-        [{id: "4100", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 35,
-    popAt: 3
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 0, pips: []}],
-        [{id: "010", type: 0, pips: []},{id: "011", type: 2, direction: "b", connected: "b", pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 0, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 0, pips: []}],
-        [{id: "060", type: 0, pips: []}]
-      ],
-      [
-        [{id: "100", type: 0, pips: []}, {id: "101", type: 2, direction: "r", connected: "r", pips: []}],
-        [{id: "110", type: 4, connectors: ["t", "r", "l"], pips: []}],
-        [{id: "120", type: 0, pips: []}, {id: "121", type: 1, connected: "l", pips: []}],
-        [{id: "130", type: 0, pips: []}],
-        [{id: "140", type: 0, pips: []}, {id: "141", type: 1, connected: "r", pips: []}],
-        [{id: "150", type: 4, connectors: ["r", "b", "l"], pips: []}],
-        [{id: "160", type: 0, pips: []}, {id: "161", type: 2, direction: "l", connected: "l", pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 0, pips: []}],
-        [{id: "220", type: 0, pips: []}],
-        [{id: "230", type: 0, pips: []}],
-        [{id: "240", type: 0, pips: []}],
-        [{id: "250", type: 0, pips: []}, {id: "251", type: 2, direction: "t", connected: "t", pips: []}],
-        [{id: "260", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 8,
-    popAt: 2
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 0, pips: []}],
-        [{id: "010", type: 0, pips: []}, {id: "011", type: 2, direction: "b", connected: "b", pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 0, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 0, pips: []}, {id: "051", type: 2, direction: "l", connected: "b", pips: []}],
-        [{id: "060", type: 0, pips: []}]
-      ],
-      [
-        [{id: "100", type: 0, pips: []}, {id: "101", type: 1, connected: "r", pips: []}],
-        [{id: "110", type: 4, connectors: ["t", "b", "l"], pips: []}],
-        [{id: "120", type: 0, pips: []}],
-        [{id: "130", type: 0, pips: []}],
-        [{id: "140", type: 0, pips: []}],
-        [{id: "150", type: 4, connectors: ["t", "r", "b"], pips: []}],
-        [{id: "160", type: 0, pips: []}, {id: "161", type: 1, connected: "l", pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 0, pips: []}, {id: "211", type: 2, direction: "t", connected: "t", pips: []}],
-        [{id: "220", type: 0, pips: []}, {id: "221", type: 2, direction: "r", connected: "r", pips: []}],
-        [{id: "230", type: 4, connectors: ["r", "b", "l"], pips: []}],
-        [{id: "240", type: 0, pips: []}, {id: "241", type: 2, direction: "l", connected: "l", pips: []}],
-        [{id: "250", type: 0, pips: []}, {id: "251", type: 2, direction: "t", connected: "t", pips: []}],
-        [{id: "260", type: 0, pips: []}]
-      ],
-      [
-        [{id: "300", type: 0, pips: []}],
-        [{id: "310", type: 0, pips: []}],
-        [{id: "320", type: 0, pips: []}],
-        [{id: "330", type: 0, pips: []}, {id: "331", type: 2, direction: "t", connected: "t", pips: []}],
-        [{id: "340", type: 0, pips: []}],
-        [{id: "350", type: 0, pips: []}],
-        [{id: "360", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 12,
-    popAt: 3
-  },
-  {
-    cells: [
-      [
-        [{id: "000", type: 0, pips: []}],
-        [{id: "010", type: 0, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 2, direction: "b", pips: []}],
-        [{id: "040", type: 1, pips: []}],
-        [{id: "050", type: 2, direction: "b", pips: ["l"]}],
-        [{id: "060", type: 0, pips: []}],
-        [{id: "070", type: 0, pips: []}],
-        [{id: "080", type: 0, pips: []}]
-      ],
-      [
-        [{id: "100", type: 1, pips: ["r"]}],
-        [{id: "110", type: 1, pips: ["b"]}],
-        [{id: "120", type: 1, pips: []}],
-        [{id: "130", type: 1, pips: ["t"]}],
-        [{id: "140", type: 0, pips: []}],
-        [{id: "150", type: 1, pips: ["r"]}],
-        [{id: "160", type: 1, pips: []}],
-        [{id: "170", type: 1, pips: ["l"]}],
-        [{id: "180", type: 1, pips: ["l"]}]
-      ],
-      [
-        [{id: "200", type: 1, pips: ["r", "b"]}],
-        [{id: "210", type: 1, pips: []}],
-        [{id: "220", type: 1, pips: ["t"]}],
-        [{id: "230", type: 0, pips: []}],
-        [{id: "240", type: 4, connectors: ["b"], pips: []}],
-        [{id: "250", type: 0, pips: []}],
-        [{id: "260", type: 1, pips: ["r"]}],
-        [{id: "270", type: 1, pips: ["t"]}],
-        [{id: "280", type: 1, pips: ["l"]}]
-      ],
-      [
-        [{id: "300", type: 2, direction: "r", pips: []}],
-        [{id: "310", type: 1, pips: ["l"]}],
-        [{id: "320", type: 1, pips: ["t", "l"]}],
-        [{id: "330", type: 1, pips: []}],
-        [{id: "340", type: 0, pips: []}, {id: "341", type: 3, connected: "t", pips: []}],
-        [{id: "350", type: 1, pips: ["b"]}],
-        [{id: "360", type: 1, pips: ["r"]}],
-        [{id: "370", type: 1, pips: ["r"]}],
-        [{id: "380", type: 1, pips: ["t"]}]
-      ],
-      [
-        [{id: "400", type: 0, pips: []}],
-        [{id: "410", type: 0, pips: []}],
-        [{id: "420", type: 0, pips: []}],
-        [{id: "430", type: 1, pips: ["t"]}],
-        [{id: "440", type: 2, direction: "t", pips: ["r", "l"]}],
-        [{id: "450", type: 1, pips: []}],
-        [{id: "460", type: 0, pips: []}],
-        [{id: "470", type: 0, pips: []}],
-        [{id: "480", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 30,
-    popAt: 2
-  }/*,
-  {
-    cells: [
-      [
-        [{id: "000", type: 0, pips: []}],
-        [{id: "010", type: 0, pips: []}],
-        [{id: "020", type: 0, pips: []}],
-        [{id: "030", type: 0, pips: []}],
-        [{id: "040", type: 0, pips: []}],
-        [{id: "050", type: 0, pips: []}],
-        [{id: "060", type: 0, pips: []}],
-        [{id: "070", type: 0, pips: []}],
-        [{id: "080", type: 0, pips: []}]
-      ],
-      [
-        [{id: "100", type: 0, pips: []}],
-        [{id: "110", type: 0, pips: []}],
-        [{id: "120", type: 0, pips: []}],
-        [{id: "130", type: 0, pips: []}],
-        [{id: "140", type: 0, pips: []}],
-        [{id: "150", type: 0, pips: []}],
-        [{id: "160", type: 0, pips: []}],
-        [{id: "170", type: 0, pips: []}],
-        [{id: "180", type: 0, pips: []}]
-      ],
-      [
-        [{id: "200", type: 0, pips: []}],
-        [{id: "210", type: 0, pips: []}],
-        [{id: "220", type: 0, pips: []}],
-        [{id: "230", type: 0, pips: []}],
-        [{id: "240", type: 0, pips: []}],
-        [{id: "250", type: 0, pips: []}],
-        [{id: "260", type: 0, pips: []}],
-        [{id: "270", type: 0, pips: []}],
-        [{id: "280", type: 0, pips: []}]
-      ],
-      [
-        [{id: "300", type: 0, pips: []}],
-        [{id: "310", type: 0, pips: []}],
-        [{id: "320", type: 0, pips: []}],
-        [{id: "330", type: 0, pips: []}],
-        [{id: "340", type: 0, pips: []}],
-        [{id: "350", type: 0, pips: []}],
-        [{id: "360", type: 0, pips: []}],
-        [{id: "370", type: 0, pips: []}],
-        [{id: "380", type: 0, pips: []}]
-      ]
-    ],
-    cellCount: 26,
-    popAt: 4
-  }*/
-];
-levels.forEach((v1) => {v1.cells.forEach((v2) => {v2.forEach((v3) => {v3.forEach((v4) => {v4.shown = v4.type != 0})})})});
 
 
 //Event Listeners
@@ -548,9 +24,8 @@ del("mousedown", (e) => {
   let cellAt = getCellAt(els.x1, els.y1);
   if (cellAt != null) {
     let id = getCellAt(els.x1, els.y1).getAttribute("id"),
-        cellData = user.levelState.cells[getCellIdInfo(id, "r")][getCellIdInfo(id, "c")][getCellIdInfo(id, "l")],
-        click = getClick(cellData.type);
-    if (click.includes("click") && cellData.type == 4) {rotateCell(id); updateLevel()}
+        cellData = user.levelState.cells[getCellIdInfo(id, "r")][getCellIdInfo(id, "c")][getCellIdInfo(id, "l")];
+    if (cellData.type.includes(4)) {rotateCell(id); updateLevel()}
   }
 });
 del("mouseup", (e) => {
@@ -575,7 +50,7 @@ del("mouseup", (e) => {
           direction = (axis == "x") ? (xDiff < 0) ? "r" : "l" : (yDiff < 0) ? "b" : "t";
       if (click.includes("swipe") || (click.includes("click") && direction == cellData.direction)) {moveCell(id, direction)}
     }
-    else if (click.includes("click") && cellData.type != 4) {moveCell(id, cellData.direction)}
+    else if (click.includes("click") && !cellData.type.includes(4)) {moveCell(id, cellData.direction)}
     else if (click.includes("pop") && user.levelState.cellCount <= user.levelState.popAt) {popCell(id)}
   }
   els.xStart = 0;
@@ -593,33 +68,26 @@ del("mousemove", (e) => {
 //Manipulate Cells
 function createCell(data) {
   let cell = document.createElement("div"),
-      classStr = (data.type == 0) ? "voidCell" : "blankCell",
+      classStr = (data.type.includes(0)) ? "voidCell" : "blankCell",
       plate, layer = getCellIdInfo(data.id, "l");
-  switch(data.type) {
-    case 0: break;
-    case 1: break;
-    case 2:
-      /*plate = document.createElement("div");
-      plate.setAttribute("class", data.direction+"Arrow");
-      cell.appendChild(plate);*/
-      break;
-    case 3:
-      for (let i=1; i<=4; i++) {
-        plate = document.createElement("div");
-        plate.setAttribute("class", "bomb"+i);
-        cell.appendChild(plate);
-      }
-      break;
-    case 4:
+  if (data.type.includes(2)) {
+    plate = document.createElement("div");
+    let layered = (layer != 0) ? "Layered" : "";
+    plate.setAttribute("class", data.direction+layered+"Arrow");
+    cell.appendChild(plate);
+  }
+  if (data.type.includes(3)) {
+    for (let i=1; i<=4; i++) {
       plate = document.createElement("div");
-      plate.setAttribute("class", "wheel");
+      let layered = (layer != 0) ? "Layered" : "";
+      plate.setAttribute("class", "bomb"+layered+i);
       cell.appendChild(plate);
-      /*data.connectors.forEach((value) => {
-        plate = document.createElement("div");
-        plate.setAttribute("class", value+"Wheel");
-        cell.appendChild(plate);
-      });*/
-      break;
+    }
+  }
+  if (data.type.includes(4)) {
+    plate = document.createElement("div");
+    plate.setAttribute("class", "wheel");
+    cell.appendChild(plate);
   }
   let lowestCell = di(getCellIdInfo(data.id, "r")+""+getCellIdInfo(data.id, "c")+""+(getCellIdInfo(data.id, "l")-1));
   if (layer > 0) {classStr += " layeredCell"}
@@ -682,7 +150,8 @@ function canMoveCell(cell, direction) {
   let canMove = true,
       levelData = user.levelState,
       r = getCellIdInfo(cell, "r"),
-      c = getCellIdInfo(cell, "c");
+      c = getCellIdInfo(cell, "c"),
+      l = getCellIdInfo(cell, "l");
   
   //Is the lane clear?
   let cellsInLaneCount = 0;
@@ -690,10 +159,10 @@ function canMoveCell(cell, direction) {
     case "t":
       for (let i=r-1; i>=0; i--) {
         let breakLoop = false;
-        for (let l=0; l<levelData.cells[i][c].length; l++) {
-          let data = levelData.cells[i][c][l];
-          if (data.type == 3 && cellsInLaneCount == 0) {breakLoop = true}
-          if (data.shown && data.type != 0 && data.type != 3) {
+        for (let L=0; L<levelData.cells[i][c].length; L++) {
+          let data = levelData.cells[i][c][L];
+          if (data.type.includes(3) && cellsInLaneCount == 0) {breakLoop = true}
+          if (data.shown && !data.type.includes(0) && !data.type.includes(3)) {
             canMove = false;
             cellsInLaneCount++;
           }
@@ -704,10 +173,10 @@ function canMoveCell(cell, direction) {
     case "r":
       for (let i=c+1; i<levelData.cells[r].length; i++) {
         let breakLoop = false;
-        for (let l=0; l<levelData.cells[r][i].length; l++) {
-          let data = levelData.cells[r][i][l];
-          if (data.type == 3 && cellsInLaneCount == 0) {breakLoop = true}
-          if (data.shown && data.type != 0 && data.type != 3) {
+        for (let L=0; L<levelData.cells[r][i].length; L++) {
+          let data = levelData.cells[r][i][L];
+          if (data.type.includes(3) && cellsInLaneCount == 0) {breakLoop = true}
+          if (data.shown && !data.type.includes(0) && !data.type.includes(3)) {
             canMove = false;
             cellsInLaneCount++;
           }
@@ -718,10 +187,10 @@ function canMoveCell(cell, direction) {
     case "b":
       for (let i=r+1; i<levelData.cells.length; i++) {
         let breakLoop = false;
-        for (let l=0; l<levelData.cells[i][c].length; l++) {
-          let data = levelData.cells[i][c][l];
-          if (data.type == 3 && cellsInLaneCount == 0) {breakLoop = true}
-          if (data.shown && data.type != 0 && data.type != 3) {
+        for (let L=0; L<levelData.cells[i][c].length; L++) {
+          let data = levelData.cells[i][c][L];
+          if (data.type.includes(3) && cellsInLaneCount == 0) {breakLoop = true}
+          if (data.shown && !data.type.includes(0) && !data.type.includes(3)) {
             canMove = false;
             cellsInLaneCount++;
           }
@@ -732,10 +201,10 @@ function canMoveCell(cell, direction) {
     case "l":
       for (let i=c-1; i>=0; i--) {
         let breakLoop = false;
-        for (let l=0; l<levelData.cells[r][i].length; l++) {
-          let data = levelData.cells[r][i][l];
-          if (data.type == 3 && cellsInLaneCount == 0) {breakLoop = true}
-          if (data.shown && data.type != 0 && data.type != 3) {
+        for (let L=0; L<levelData.cells[r][i].length; L++) {
+          let data = levelData.cells[r][i][L];
+          if (data.type.includes(3) && cellsInLaneCount == 0) {breakLoop = true}
+          if (data.shown && !data.type.includes(0) && !data.type.includes(3)) {
             canMove = false;
             cellsInLaneCount++;
           }
@@ -747,8 +216,8 @@ function canMoveCell(cell, direction) {
   if (!canMove) {return false}
   
   //Are there any pips in the way?
-  if ((direction == "t" || direction == "b") && (getPipAt(cell, "l") >= 0 || getPipAt(cell, "r") >= 0 || getPipAt(r+""+(c-1)+"0", "r") >= 0 || getPipAt(r+""+(c+1)+"0", "l") >= 0)) {canMove = false}
-  else if ((direction == "r" || direction == "l") && (getPipAt(cell, "t") >= 0 || getPipAt(cell, "b") >= 0 || getPipAt((r-1)+""+c+"0", "b") >= 0 || getPipAt((r+1)+""+c+"0", "t") >= 0)) {canMove = false}
+  if ((direction == "t" || direction == "b") && (getPipAt(cell, "l") >= 0 || getPipAt(cell, "r") >= 0 || getPipAt(r+""+(c-1)+""+getCellIdInfo(cell, "l"), "r") >= 0 || getPipAt(r+""+(c+1)+""+getCellIdInfo(cell, "l"), "l") >= 0)) {canMove = false}
+  else if ((direction == "r" || direction == "l") && (getPipAt(cell, "t") >= 0 || getPipAt(cell, "b") >= 0 || getPipAt((r-1)+""+c+""+getCellIdInfo(cell, "l"), "b") >= 0 || getPipAt((r+1)+""+c+""+getCellIdInfo(cell, "l"), "t") >= 0)) {canMove = false}
   if (!canMove) {return false}
   
   return canMove;
@@ -793,7 +262,7 @@ function rotateCell(cell) {
     
     user.levelState.cells[r][c][l].connectors[index] = dd;
     user.levelState.cells[getCellIdInfo(cellAtvalue, "r")][getCellIdInfo(cellAtvalue, "c")][getCellIdInfo(cellAtvalue, "l")].connected = getOppositeDirection(dd);
-    di(getCellIdInfo(cellAtdd, "r")+""+getCellIdInfo(cellAtdd, "c")+"0").appendChild(di(cellAtvalue));
+    di(getCellIdInfo(cellAtdd, "r")+""+getCellIdInfo(cellAtdd, "c")+"t").appendChild(di(cellAtvalue));
     di(cellAtvalue).setAttribute("id", dr+""+dc+""+dl);
     
     user.levelState.cells[dr][dc].push(cellData);
@@ -886,19 +355,20 @@ function removePip(cell, side) {
   let pipAt = getPipAt(cell, side);
   if (pipAt >= 0) {di(cell).removeChild(di(cell).childNodes[pipAt])}
 }
-function addArrow(cell, direction, real) {
+/*function addArrow(cell, direction, real) {
   let arrowAt = (!real) ? getArrowAt(cell, direction) : -1;
   if (arrowAt < 0) {
     let arrow = document.createElement("div");
-    arrow.setAttribute("class", direction+"Arrow");
-    arrow.setAttribute("id", cell+direction+"Arrow");
+    let layered = (getCellIdInfo(cell, "l") != 0) ? "Layered" : "";
+    arrow.setAttribute("class", direction+layered+"Arrow");
+    arrow.setAttribute("id", cell+direction+layered+"Arrow");
     di(cell).appendChild(arrow);
   }
 }
 function removeArrow(cell, direction) {
   let arrowAt = getArrowAt(cell, direction);
   if (arrowAt >= 0) {di(cell).removeChild(di(cell).childNodes[arrowAt])}
-}
+}*/
 function addWheelX(cell, real) {
   let wheelXAt = (!real) ? getWheelXAt(cell) : -1;
   if (wheelXAt < 0) {
@@ -986,15 +456,11 @@ function getCellsAt(x, y) {
 }
 
 function getClick(type) {
-  let click;
-  switch(type) {
-    case 0: click = "none"; break;
-    case 1: click = "swipe"; break;
-    case 2: click = "click"; break;
-    case 3: click = "none pop"; break; //"None"
-    case 4: click = "click pop"; break;
-  }
-  return click;
+  if (type.includes(0)) {return "none"}
+  else if (type.includes(1)) {return "swipe"}
+  else if (type.includes(2)) {return "click"}
+  else if (type.includes(3)) {return "none pop"}
+  else if (type.includes(4)) {return "click pop"}
 }
 function getCellIdInfo(id, info) {
   if (info == "r") {return Number(id.charAt(0))}
@@ -1043,14 +509,18 @@ function loadLevel(level) {
     row.setAttribute("class", "tableRow");
     row.setAttribute("id", "row"+r);
     for (let c=0; c<levels[level].cells[r].length; c++) {
-      let cell = createCell(levels[level].cells[r][c][0]);
-      for (let l=1; l<levels[level].cells[r][c].length; l++) {
-        cell.appendChild(createCell(levels[level].cells[r][c][l]));
+      let cellContainer = document.createElement("div");
+      cellContainer.setAttribute("class", "tile");
+      cellContainer.setAttribute("id", r+""+c+"t");
+      /*let cell = createCell(levels[level].cells[r][c][0]);*/
+      for (let l=0; l<levels[level].cells[r][c].length; l++) {
+        cellContainer.appendChild(createCell(levels[level].cells[r][c][l]));
       }
-      row.appendChild(cell);
+      row.appendChild(cellContainer);
     }
     di("tableContainer").appendChild(row);
   }
+  updateLevel();
 }
 function updateLevel() {
   let cells = user.levelState.cells;
@@ -1060,24 +530,18 @@ function updateLevel() {
       for (let l=0; l<cells[r][c].length; l++) {
         
         //Update Pips
-        if (l == 0) {
-          cells[r][c][l].pips.forEach((value) => {
-            let pipD = value, pipR, pipC, pipL;
-            value = (value == "t") ? (r-1)+""+c+""+l : (value == "r") ? r+""+(c+1)+""+l : (value == "b") ? (r+1)+""+c+""+l : r+""+(c-1)+""+l;
-            pipR = getCellIdInfo(value, "r");
-            pipC = getCellIdInfo(value, "c");
-            pipL = getCellIdInfo(value, "l");
-            if (cells[pipR][pipC][pipL].shown && cells[r][c][l].shown) {addPip(r+""+c+""+l, pipD)} else {removePip(r+""+c+""+l, pipD)}
-          });
-        }
-        else {cells[r][c][l].pips.forEach((value) => {removePip(r+""+c+""+l, value)})}
-        
-        //Update Arrows
-        if (cells[r][c][l].type == 2) {
-          /*let arrow = document.createElement("div");
-          arrow.setAttribute("class", cells[r][c][l].direction+"Arrow");
-          di(r+""+c+"0").appendChild(arrow);*/
-          addArrow(r+""+c+""+l, cells[r][c][l].direction);
+        if (typeof cells[r][c][l].pips != "undefined") {
+          if (l == 0) {
+            cells[r][c][l].pips.forEach((value) => {
+              let pipD = value, pipR, pipC, pipL;
+              value = (value == "t") ? (r-1)+""+c+""+l : (value == "r") ? r+""+(c+1)+""+l : (value == "b") ? (r+1)+""+c+""+l : r+""+(c-1)+""+l;
+              pipR = getCellIdInfo(value, "r");
+              pipC = getCellIdInfo(value, "c");
+              pipL = getCellIdInfo(value, "l");
+              if (cells[pipR][pipC][pipL].shown && cells[r][c][l].shown) {addPip(r+""+c+""+l, pipD)} else {removePip(r+""+c+""+l, pipD)}
+            });
+          }
+          else {cells[r][c][l].pips.forEach((value) => {removePip(r+""+c+""+l, value)})}
         }
         
         //Update Wheels
@@ -1109,5 +573,4 @@ function updateLevel() {
     }, 1000);
   }
 }
-loadLevel(1);
-updateLevel();
+loadLevel(levels.length-1);
