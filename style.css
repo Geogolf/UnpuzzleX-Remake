@@ -214,3 +214,7 @@ span {color: rgb(150, 150, 150); font-family: "Georgia"; overflow-wrap: break-wo
 .rWheelLine {left: 100%; transform: translateY(-2px) rotate(90deg)}
 .bWheelLine {top: 50%}
 .lWheelLine {left: 0%; transform: translate(-100%, -3px) rotate(90deg)}
+.ttWheelLine {bottom: 160%}
+.rrWheelLine {left: 210%; transform: translateY(-2px) rotate(90deg)}
+.bbWheelLine {top: 160%}
+.llWheelLine {left: -110%; transform: translate(-100%, -3px) rotate(90deg)}
